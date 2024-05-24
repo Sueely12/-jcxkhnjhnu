@@ -4,8 +4,8 @@ from werkzeug.utils import secure_filename
 import os
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'static/uploads/'  # Yüklenen dosyaların saklanacağı klasör
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000  # Maksimum dosya boyutu 16MB
+app.config['UPLOAD_FOLDER'] = 'static/uploads/'  # Uploaded Files Folder
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1000 * 1000  # Maximum file size
 ALLOWED_EXTENSIONS = {'mp4', 'mov', 'avi'}
 
 def allowed_file(filename):
@@ -32,7 +32,7 @@ def upload():
 
 @app.route('/')
 def home():
-    # Örnek veri yapısı; gerçekte veritabanından alınacak veriler
+    # data
     popular_videos = [
         {'title': 'Video 1', 'url': '#'},
         {'title': 'Video 2', 'url': '#'},
@@ -40,7 +40,7 @@ def home():
     ]
     random_videos = random.sample(popular_videos, len(popular_videos))  # Basit bir rastgele örnekleme
 
-    # Yüklenen videoların listesini al
+    # get uploaded videos list
     video_files = os.listdir(app.config['UPLOAD_FOLDER'])
 
     # Şablonu, video listeleri ile birlikte döndür
