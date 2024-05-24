@@ -43,7 +43,7 @@ def home():
     # get uploaded videos list
     video_files = os.listdir(app.config['UPLOAD_FOLDER'])
 
-    # Şablonu, video listeleri ile birlikte döndür
+    # Rotate template with video lists
     return render_template('home.html', popular_videos=popular_videos, random_videos=random_videos, video_files=video_files)
 
 if __name__ == '__main__':
