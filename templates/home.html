@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <div id="logo">
+            <h1>Video Platform</h1>
+        </div>
+
+        <div id="search-bar">
+            <input type="text" placeholder="search" id="search-input">
+            <button type="submit" id="search-button">Ara</button>
+        </div>
+
+        <div id="upload-button">
+            <a href="{{ url_for('upload') }}"><button type="button">Yükle</button></a>
+        </div>
+        <div id="login-signup">
+            <a href="{{ url_for('login') }}"><button type="button" id="login-button">Giriş</button></a>
+            <a href="{{ url_for('signup') }}"><button type="button" id="signup-button">Kayıt Ol</button></a>
+        </div>
+    </header>
+
+    <main>
+        <section id="video-list">
+            <h2>Populyar Videos</h2>
+        </section>
+        
+        <section id="uploaded-videos">
+            <h2>uploaded-videos</h2>
+            {% for video in video_files %}
+                <div>
+                    <video width="320" height="240" controls>
+                        <source src="{{ url_for('static', filename='uploads/' ~ video) }}" type="video/mp4">
+                        Browser Not supported videos
+                    </video>
+                </div>
+            {% endfor %}
+        </section>
+
+        <section id="random-videos">
+            <h2>Random Videos</h2>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 OnlyOne</p>
+    </footer>
+</body>
+</html>
